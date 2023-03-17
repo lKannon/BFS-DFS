@@ -3,7 +3,7 @@
 #statusR1 -> Status da sala 1 (Limpa ou Suja, 0 ou 1)
 #statusR2 -> Status da sala 2 (Limpa ou Suja, 0 ou 1)
 #s -> estado inicial
-
+from collections import deque
 class State:
     def _init_(self, position, statusR1, statusR2):
         self.position = position
