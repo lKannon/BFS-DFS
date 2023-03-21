@@ -9,7 +9,7 @@ from deque import queue
 
 #Movimentos possíveis
 
-def expansion(sate):
+def expansion(state):
     #Mover a esquerda
 
     state = [0, state[1], state[2]]
