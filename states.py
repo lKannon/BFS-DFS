@@ -1,42 +1,42 @@
-#Classe de estados possíveis 
-#position -> Posiçao do robô
-#statusR1 -> Status da sala 1 (Limpa ou Suja, 0 ou 1)
-#statusR2 -> Status da sala 2 (Limpa ou Suja, 0 ou 1)
-#s -> estado inicial
+#Classe de estados possíveis
+#Os Estados possiveis sao dados por um vetor de 3 elementos no qual:
+#1 Elemento -> position -> Posiçao do robô
+#2 Elemento -> statusR1 -> Status da sala 1 (Limpa ou Suja, 0 ou 1)
+#3 Elemento -> statusR2 -> Status da sala 2 (Limpa ou Suja, 0 ou 1)
+#state -> estado inicial state = [0,1,1] // Posição 0 e as duas salas sujas
+
+from deque import queue
+
+#Movimentos possíveis
+
+def expansion(sate):
+    #Mover a esquerda
+
+    state = [0, state[1], state[2]]
+    queue.append(state)
+
+    #Mover a direita
 
 
+    state = [1, state[1], state[2]]
+    queue.append(state)
 
+    #limpar a sala atual
 
-class State:
-    def __init__(self, position, statusR1, statusR2):
-        self.position = position
-        self.statusR1 = statusR1
-        self.statusR2 = statusR2
-        self.left = None
-        self.right = None
-        self.clean = None
-
-def left(s):
-    sLeft = State(s.position, s.statusR1, s.statusR2)
-    sLeft.position = 1
-    return sLeft
-
-def right(s):
-    sRight = State(s.position, s.statusR1, s.statusR2)
-    sRight.position = 2
-    return sRight
-
-def clean(s):
-    sClean = State(s.position, s.statusR1, s.statusR2)
-    if s.position == 1:
-        sClean.statusR1 = 'N'
+    if state[0] == 0:
+        state = [0, 0, state[2]]
+        queue.append(state)
     else:
-        sClean.statusR2 = 'N'
+        state = [1, state[1], 0]
+        queue.append(state)
+    return queue
 
-    return sClean
-
-def expansion(s):
-    s.left = left(s)
-    s.right = right(s)
-    s.clean = clean(s)
+def check(state):
+    if state[1] == 0 and state[2] == 0:
+        return True
+    else:
+        return False
+    
+def state2string(state):
+    return ''.join([str(v) for v in state])
 
