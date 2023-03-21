@@ -2,21 +2,21 @@ from deque import *
 from states import *
 
 
-def bfs(firstState): 
-    visited = [firstState]
-    candidates = [firstState]
-    fathers = dict()
+def bfs(firstState):                #Entrada para primeiro estado
+    visited = [firstState]          #Lista para estados visitados
+    candidates = [firstState]       #Lista para estados candidados a estados finais
+    fathers = dict()                #Dicionario com pais dos nós
 
-    while(len(candidates) > 0):
-        father = candidates[0]
-        print("Candidatos: ", candidates)
-        del candidates[0]
-        print("Visited: ", father)
+    while(len(candidates) > 0):                 #Enquando a lista de candidatos não termina
+        father = candidates[0]                  #Lista de pais recebe primeiro candidato
+        print("Candidatos: ", candidates)       #Imprime lista de candidatos
+        del candidates[0]                       #Elimina o primeiro candidato da lista
+        print("Visited: ", father)              #Printa o elemento Pai como visitado
 
-        if check(father):
-            path = []
-            node = father
-            while node != firstState:
+        if check(father):                       #Check se o Pai é o estado final
+            path = []                           #Criação do caminho
+            node = father                       #Armazenar o estado Pai em Nodo
+            while node != firstState:           
                 path.append(node)
                 node = fathers[state2string(node)]
             path.append(firstState)
