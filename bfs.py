@@ -14,19 +14,24 @@ def bfs(firstState):                #Entrada para primeiro estado
         print("Visited: ", father)              #Printa o elemento Pai como visitado
 
         if check(father):                       #Check se o Pai é o estado final
-            path = []                           #Criação do caminho
+            path = []                           #Criação e acumulo do caminho
             node = father                       #Armazenar o estado Pai em Nodo
             while node != firstState:           
                 path.append(node)
                 node = fathers[state2string(node)]
             path.append(firstState)
             path.reverse()
-            print("Solution", path)
-            input()
+            print("O caminho foi: ", path)
+            print('Quantidade de estados percorridos: ')
+            print(len(path))
+            break
 
-        for son in expansion(father):
-            if son not in visited:
-                print("Inserted: ", son, father)
+        for son in expansion(father):               #Cria filhos
+            if son not in visited:                  #Checa se os filhos criados ja nao foram visitados
+                print("Inserted: ", son, father)    #Printa os filhos criados
                 visited.append(son)
                 fathers[state2string(son)] = father
                 candidates.append(son)
+                #input("Stop")
+                #for i in queue:
+                    #print(i)

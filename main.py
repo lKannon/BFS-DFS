@@ -1,4 +1,4 @@
 from bfs import bfs
+from states import *
 
-
-bfs([0,1,1])
+bfs([1,1,1])

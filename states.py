@@ -10,25 +10,26 @@ from deque import queue
 #Movimentos possíveis
 
 def expansion(state):
+    
     #Mover a esquerda
 
-    state = [0, state[1], state[2]]
-    queue.append(state)
-
-    #Mover a direita
-
-
-    state = [1, state[1], state[2]]
-    queue.append(state)
+    stateL = [0, state[1], state[2]]
+    queue.append(stateL)
 
     #limpar a sala atual
 
     if state[0] == 0:
-        state = [0, 0, state[2]]
-        queue.append(state)
+        stateC = [0, 0, state[2]]
+        queue.append(stateC)
     else:
-        state = [1, state[1], 0]
-        queue.append(state)
+        stateC = [1, state[1], 0]
+        queue.append(stateC)
+
+    #Mover a direita
+
+    stateR = [1, state[1], state[2]]
+    queue.append(stateR)
+    
     return queue
 
 def check(state):
