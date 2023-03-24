@@ -1,15 +1,17 @@
-from deque import *
+
 from states import *
 
 
+
 def bfs(firstState):                #Entrada para primeiro estado
+    print('Busca em Largura--------')
     visited = [firstState]          #Lista para estados visitados
     candidates = [firstState]       #Lista para estados candidados a estados finais
     fathers = dict()                #Dicionario com pais dos nós
 
     while(len(candidates) > 0):                 #Enquando a lista de candidatos não termina
         father = candidates[0]                  #Lista de pais recebe primeiro candidato
-        print("Candidatos: ", candidates)       #Imprime lista de candidatos
+        print("Candidates: ", candidates)       #Imprime lista de candidatos
         del candidates[0]                       #Elimina o primeiro candidato da lista
         print("Visited: ", father)              #Printa o elemento Pai como visitado
 
@@ -22,16 +24,17 @@ def bfs(firstState):                #Entrada para primeiro estado
             path.append(firstState)
             path.reverse()
             print("O caminho foi: ", path)
-            print('Quantidade de estados percorridos até o estado final: ')
+            print('Quantidade de estados percorridos até o estado final:')
             print(len(path))
+            print('Quantidade de estados visitados: ')
+            print(visited, " = ", end="")
+            print(len(visited),"\n\n")
             break
 
         for son in expansion(father):               #Cria filhos
             if son not in visited:                  #Checa se os filhos criados ja nao foram visitados
                 print("Inserted: ", son, father)    #Printa os filhos criados
-                visited.append(son)
+                visited.append(son)                 #Inserção feita na base (fila)
                 fathers[state2string(son)] = father
                 candidates.append(son)
-                #input("Stop")
-                #for i in queue:
-                    #print(i)
+                

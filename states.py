@@ -5,12 +5,13 @@
 #3 Elemento -> statusR2 -> Status da sala 2 (Limpa ou Suja, 0 ou 1)
 #state -> estado inicial state = [0,1,1] // Posição 0 e as duas salas sujas
 
-from deque import queue
+
 
 #Movimentos possíveis
 
 def expansion(state):
     
+    queue = []
     #Mover a esquerda
 
     stateL = [0, state[1], state[2]]

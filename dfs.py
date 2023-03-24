@@ -1,17 +1,17 @@
-from deque import *
+
 from states import *
 
 
 
 def dfs(firstState):                #Entrada para primeiro estado
-    
+    print('------------Busca em Profundidade---------')
     visited = [firstState]          #Lista para estados visitados
     candidates = [firstState]       #Lista para estados candidados a estados finais
     fathers = dict()                #Dicionario com pais dos nós
     
     while(len(candidates) > 0):                 #Enquando a lista de candidatos não termina
         father = candidates[0]                  #Lista de pais recebe primeiro candidato
-        print("Candidatos: ", candidates)       #Imprime lista de candidatos
+        print("Candidates: ", candidates)       #Imprime lista de candidatos
         del candidates[0]                       #Elimina o primeiro candidato da lista
         print("Visited: ", father)              #Printa o elemento Pai como visitado
         
@@ -26,14 +26,15 @@ def dfs(firstState):                #Entrada para primeiro estado
             print("O caminho foi: ", path)
             print('Quantidade de estados percorridos até o estado final: ')
             print(len(path))
+            print('Quantidade de estados visitados: ')
+            print(visited, " = ",end="")
+            print(len(visited),"\n\n")
             break
 
         for son in expansion(father):               #Cria filhos
             if son not in visited:                  #Checa se os filhos criados ja nao foram visitados
                 print("Inserted: ", son, father)    #Printa os filhos criados
-                visited.insert(0,(son))
-                fathers[state2string(son)] = father
+                visited.insert(0,(son))             #Inserção feita no topo (Pilha)
+                fathers[state2string(son)] = father 
                 candidates.insert(0,(son))
-                #input("Stop")
-                #for i in queue:
-                    #print(i)
+                
